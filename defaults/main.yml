@@ -1,0 +1,4 @@
+---
+# defaults file for mysql-server-install
+  mysql_root_user: root
+  mysql_root_password: <your_password>

@@ -1,0 +1,49 @@
+---
+# tasks file for mysql-server-install---
+    - name: Install MySQL community version repository
+      yum: name='{{mysql_community_repo}}' state=present
+                
+    - name: Install mysql server
+      yum: name=mysql-server state=present
+                
+    - name: Start mysql server
+      service: name=mysqld state=started enabled=yes
+
+    - name: Install MySQL-python for Ansible
+      apt: name=python-mysqldb state=present
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+    - name: Install python-mysqldb for Ansible
+      yum: name=MySQL-python state=present
+      when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
+
+    - debug: msg="WARNING - you have to change default mysql_root_password"
+      when: mysql_root_password == '-----====>SetYpanGS5oUN*a<====-----'
+
+    - name: root password is present
+      mysql_user: name='{{mysql_root_user}}' host={{item}} password='{{mysql_root_password}}' state=present
+      with_items:
+        - '::1'
+        - '127.0.0.1'
+        - 'localhost'
+
+    - name: test database is absent
+      mysql_db: name=test state=absent
+
+    - name: anonymous users are absent
+      mysql_user: name='' state=absent host_all=yes
+
+    - name: create db
+      mysql_db:
+        login_user: root
+        login_password: p@55W0rd
+        name: redmine
+        state: present
+
+    - name: create user
+      mysql_user:
+        name: redmine
+        password: p@55W0rd
+        priv: '*.*:ALL,GRANT'
+        state: present
+

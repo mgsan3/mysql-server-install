@@ -1,0 +1,18 @@
+---
+
+- hosts: localhost
+
+  tasks:
+    - name: create db
+      mysql_db:
+        login_user: root
+        login_password: p@55W0rd
+        name: redmine
+        state: present
+
+    - name: create user    
+      mysql_user:
+        name: redmine
+        password: p@55W0rd
+        priv: '*.*:ALL,GRANT'
+        state: present
