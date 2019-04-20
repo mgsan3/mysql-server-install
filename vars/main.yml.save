@@ -1,6 +1,0 @@
----
-# vars file for mysql-server-install
-  - name declare global variables
-    mysql_root_password: p@55W0rdMY
-    mysql_community_repo: https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm 
-state=present
