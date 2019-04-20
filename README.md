@@ -1,7 +1,7 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+An ansible role to install mysql server community version and create a redmine database and its user.
 
 Requirements
 ------------
@@ -11,12 +11,12 @@ Ansible version must be greater than 2
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+You can set your defaults and varaible in defaults/main.yml and vars/main.yml
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+NA
 
 Example Playbook
 ----------------
